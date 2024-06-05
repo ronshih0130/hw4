@@ -1,22 +1,22 @@
 <h1>New Entry</h1>
 
-<form action="/entries" method="post">
-  <input type="hidden" name="place_id" value="<%= params["place_id"] %>">
-
-  <p>
-    <label for="title_input">Title</label>
-    <input type="text" name="title" id="title_input">
-  </p>
-
-  <p>
-    <label for="description_input">Description</label>
-    <input type="text" name="description" id="description_input">
-  </p>
-
-  <p>
-    <label for="occurred_on_input">Occurred On</label>
-    <input type="date" name="occurred_on" id="occurred_on_input">
-  </p>
-
-  <button>Save</button>
-</form>
+<%= form_with model: @entry, url: entries_path, method: :post, local: true, multipart: true do |form| %>
+  <%= form.hidden_field :place_id, value: @entry.place_id %>
+  <div class="form-group">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: 'form-control', id: 'title_input' %>
+  </div>
+  <div class="form-group">
+    <%= form.label :description %>
+    <%= form.text_area :description, class: 'form-control', id: 'description_input' %>
+  </div>
+  <div class="form-group">
+    <%= form.label :occurred_on %>
+    <%= form.date_field :occurred_on, class: 'form-control', id: 'occurred_on_input' %>
+  </div>
+  <div class="form-group">
+    <%= form.label :image %>
+    <%= form.file_field :image, class: 'form-control', id: 'image_input', accept: 'image/png, image/jpg, image/jpeg, image/gif' %>
+  </div>
+  <button type="submit" class="btn btn-primary">Save</button>
+<% end %>

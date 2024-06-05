@@ -1,6 +1,13 @@
 <h1>Login</h1>
 
-<form action="/sessions" method="post">
-
-  <button>Login<button>
-</form>
+<%= form_with url: sessions_path, method: :post, local: true do %>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <%= text_field_tag :email, nil, class: 'form-control', id: 'email' %>
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <%= password_field_tag :password, nil, class: 'form-control', id: 'password' %>
+  </div>
+  <button type="submit" class="btn btn-primary">Login</button>
+<% end %>
